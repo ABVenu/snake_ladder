@@ -16,6 +16,7 @@
             gap: 2px;
             margin: 20px auto;
             width: 520px;
+            background-color: lightyellow;
         }
         .cell {
             width: 50px;
@@ -25,6 +26,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            background-color: white;
         }
         .player {
             position: absolute;
@@ -50,7 +52,7 @@
         const statusDisplay = document.getElementById("status");
         const snakes = {16: 6, 47: 26, 49: 11, 56: 53, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 78};
         const ladders = {1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 100};
-        let positions = {"Player 1": 0, "Player 2": 0};
+        let positions = {"Player 1": 1, "Player 2": 1};
         let currentPlayer = "Player 1";
         
         function createBoard() {
@@ -59,6 +61,11 @@
                 cell.classList.add("cell");
                 cell.id = "cell-" + i;
                 cell.innerText = i;
+                if (snakes[i]) {
+                    cell.style.backgroundColor = "lightcoral";
+                } else if (ladders[i]) {
+                    cell.style.backgroundColor = "lightgreen";
+                }
                 board.appendChild(cell);
             }
         }
@@ -103,6 +110,7 @@
         }
         
         createBoard();
+        updateBoard();
     </script>
 </body>
 </html>
